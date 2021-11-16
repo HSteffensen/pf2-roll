@@ -2,11 +2,11 @@
     export let result: number;
 </script>
 
-<div>
-    Roll History Item
+<li>
+    You rolled:
     <br />
     {result}
-</div>
+</li>
 
 <style>
 </style>

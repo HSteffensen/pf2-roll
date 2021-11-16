@@ -3,13 +3,22 @@
 	import RollHistory from "./RollHistory.svelte";
 </script>
 
-<main>
+<div class="main-grid">
 	<RollDice />
-	<RollHistory />
-</main>
+	<div class="history-panel">
+		<RollHistory />
+	</div>
+</div>
 
 <style>
-	main {
-		text-align: center;
+	div.main-grid {
+		display: grid;
+		grid-template: 100vh / 1fr 20rem;
+	}
+
+	div.history-panel {
+		resize: horizontal;
+		border-left: black solid 1px;
+		padding: 4px;
 	}
 </style>
