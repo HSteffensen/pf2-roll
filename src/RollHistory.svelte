@@ -1,5 +1,6 @@
 <script lang="ts">
     import { afterUpdate, beforeUpdate, onDestroy } from "svelte";
+    import BasicRollDice from "./BasicRollDice.svelte";
 
     import { mostRecentDiceRoll } from "./dice-result";
     import RollHistoryItem from "./RollHistoryItem.svelte";
@@ -26,29 +27,29 @@
     });
 </script>
 
-<div class="outer">
-    <div>Dice roll history</div>
-    <ul class="history" bind:this={scroller}>
+<div id="outer">
+    <ul id="historyList" bind:this={scroller}>
         {#each rolls as roll}
             <RollHistoryItem result={roll} />
         {:else}
             <li>No dice roll history yet.</li>
         {/each}
     </ul>
-    <div>footer</div>
+    <BasicRollDice />
 </div>
 
 <style>
-    div.outer {
+    #outer {
         height: 100%;
         width: 100%;
-        display: grid;
-        grid-template: 2rem 1fr 2rem / 100%;
-        overflow: hidden;
+        display: flex;
+        flex-flow: column nowrap;
     }
-    ul {
+    #historyList {
         overflow: auto;
         list-style: none outside;
         padding: 0 0 0 1rem;
+        margin: 0;
+        flex: 1;
     }
 </style>

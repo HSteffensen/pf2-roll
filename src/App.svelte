@@ -1,24 +1,24 @@
 <script lang="ts">
-	import RollDice from "./RollDice.svelte";
 	import RollHistory from "./RollHistory.svelte";
 </script>
 
-<div class="main-grid">
-	<RollDice />
-	<div class="history-panel">
+<div id="main-grid">
+	main panel
+	<div id="history-panel">
 		<RollHistory />
 	</div>
 </div>
 
 <style>
-	div.main-grid {
+	#main-grid {
 		display: grid;
 		grid-template: 100vh / 1fr 20rem;
 	}
 
-	div.history-panel {
-		resize: horizontal;
+	#history-panel {
 		border-left: black solid 1px;
 		padding: 4px;
+		max-height: 100vw;
+		box-sizing: content-box;
 	}
 </style>

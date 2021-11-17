@@ -3,10 +3,11 @@
 
     let diceSize = 20;
     let diceCount = 1;
+    let bonus = 0;
     export let result = 0;
 
     function roll() {
-        result = 0;
+        result = bonus;
         for (var i = 0; i < diceCount; i++) {
             result += Math.ceil(Math.random() * diceSize);
         }
@@ -18,8 +19,11 @@
     <button on:click={roll}>Roll</button>
     <input type="number" bind:value={diceCount} />
     d<input type="number" bind:value={diceSize} />
-    <br />
+    +<input type="number" bind:value={bonus} />
 </div>
 
 <style>
+    input {
+        width: 8ch;
+    }
 </style>
