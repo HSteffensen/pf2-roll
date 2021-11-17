@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { onDestroy } from "svelte";
+    import { afterUpdate, beforeUpdate, onDestroy } from "svelte";
 
     import { mostRecentDiceRoll } from "./dice-result";
     import RollHistoryItem from "./RollHistoryItem.svelte";
@@ -7,6 +7,18 @@
     let rolls: number[] = [];
     let unsubscribe = mostRecentDiceRoll.subscribe((rollResult) => {
         if (rollResult) rolls = [...rolls, rollResult];
+    });
+    let scroller;
+    let autoscroll = true;
+
+    beforeUpdate(() => {
+        autoscroll =
+            scroller &&
+            scroller.offsetHeight + scroller.scrollTop >
+                scroller.scrollHeight - 20;
+    });
+    afterUpdate(() => {
+        if (autoscroll) scroller.scrollTo(0, scroller.scrollHeight);
     });
 
     onDestroy(() => {
@@ -16,7 +28,7 @@
 
 <div class="outer">
     <div>Dice roll history</div>
-    <ul class="history">
+    <ul class="history" bind:this={scroller}>
         {#each rolls as roll}
             <RollHistoryItem result={roll} />
         {:else}
